@@ -60,6 +60,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       })
     })
   }
+  const {createRedirect} = actions 
+  createRedirect({ fromPath: '/hello', toPath: '/new-beginnings/' });
+ 
 }
 
 /**
