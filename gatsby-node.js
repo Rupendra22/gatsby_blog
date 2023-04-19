@@ -64,7 +64,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   createRedirect({  fromPath: `/temp/`,
   toPath: `/`,
   isPermanent:true,
-  force:true
+  force:true,
+  statusCode:410
+
   });
  
 }
