@@ -24,10 +24,22 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   statusCode:410
 
   });
+  createRedirect({  fromPath: `/fr/404/`,
+  toPath: `/fr/404/`,
+  isPermanent:true,
+  force:true,
+  statusCode:404
+
+  });
+
  
 }
+
+const handleRedirect =(page) =>{
+console.log("page",page)
+}
 module.exports.onCreatePage = async ({ page, actions }) => {
-  const { createPage, deletePage,createRedirect } = actions
+  const { createPage, deletePage } = actions
   // Check if the page is a localized 404
   if (page.path.match(/^\/[a-z]{2}\/404\/$/)) {
     const oldPage = { ...page }
@@ -38,14 +50,7 @@ module.exports.onCreatePage = async ({ page, actions }) => {
     // Recreate the modified page
     deletePage(oldPage)
     createPage(page)
-    createRedirect({
-      fromPath: `page`,
-      toPath:`page`,
-      statusCode: 404,
-      conditions: {
-        language: [`fr`],
-      },
-    });
+    handleRedirect(page)
   }
 }
 
