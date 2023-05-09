@@ -13,7 +13,7 @@
 /**
  * @type {import('gatsby').GatsbyNode['createPages']}
  */
-exports.createPages = async ({ graphql, actions, reporter }) => {
+exports.createPages = async ({ graphql, actions, reporter,page }) => {
   const { createRedirect } = actions
   // createRedirect({
   //   fromPath: `/temp/`,
@@ -22,20 +22,21 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   //   force: true,
   //   statusCode: 410,
   // })
-  // createRedirect({
-  //   fromPath: `/fr/*`,
+  console.log("pages",page)
+  createRedirect({
+    fromPath: `/fr/*`,
 
-  //   toPath: `/fr/`,
-  //   statusCode: 404,
-  //   force: true,
-  // })
+    toPath: `/fr/`,
+    statusCode: 404,
+    force: true,
+  })
 }
 
 const handleRedirect = page => {
   console.log("page", page)
 }
 module.exports.onCreatePage = async ({ page, actions }) => {
-  const { createPage, deletePage,createRedirect } = actions
+  const { createPage, deletePage } = actions
   // Check if the page is a localized 404
   if (page.path.match(/^\/[a-z]{2}\/404\/$/)) {
     const oldPage = { ...page }
@@ -46,13 +47,13 @@ module.exports.onCreatePage = async ({ page, actions }) => {
     // Recreate the modified page
     deletePage(oldPage)
     createPage(page)
-    createRedirect({
-      fromPath: `/fr/404`,
+    // createRedirect({
+    //   fromPath: `/fr/404`,
   
-      toPath: `/fr/404/`,
-      statusCode: 404,
-      force: true,
-    })
+    //   toPath: `/fr/404/`,
+    //   statusCode: 404,
+    //   force: true,
+    // })
   }
 }
 
