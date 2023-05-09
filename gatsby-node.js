@@ -13,7 +13,7 @@
 /**
  * @type {import('gatsby').GatsbyNode['createPages']}
  */
-exports.createPages = async ({ graphql, actions, reporter,page }) => {
+exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createRedirect } = actions
   // createRedirect({
   //   fromPath: `/temp/`,
@@ -22,7 +22,7 @@ exports.createPages = async ({ graphql, actions, reporter,page }) => {
   //   force: true,
   //   statusCode: 410,
   // })
-  console.log("pages",page)
+
   createRedirect({
     fromPath: `/fr/*`,
 
