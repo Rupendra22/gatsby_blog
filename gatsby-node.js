@@ -14,29 +14,25 @@
  * @type {import('gatsby').GatsbyNode['createPages']}
  */
 exports.createPages = async ({ graphql, actions, reporter }) => {
+  const { createRedirect } = actions
+  // createRedirect({
+  //   fromPath: `/temp/`,
+  //   toPath: `/`,
+  //   isPermanent: true,
+  //   force: true,
+  //   statusCode: 410,
+  // })
+  createRedirect({
+    fromPath: `/fr`,
 
-  
-  const {createRedirect} = actions 
-  createRedirect({  fromPath: `/temp/`,
-  toPath: `/`,
-  isPermanent:true,
-  force:true,
-  statusCode:410
-
-  });
-  createRedirect({  fromPath: `/fr/404/`,
-  toPath: `/fr/404/`,
-  isPermanent:true,
-  force:true,
-  statusCode:404
-
-  });
-
- 
+    toPath: `/fr/`,
+    statusCode: 404,
+    force: true,
+  })
 }
 
-const handleRedirect =(page) =>{
-console.log("page",page)
+const handleRedirect = page => {
+  console.log("page", page)
 }
 module.exports.onCreatePage = async ({ page, actions }) => {
   const { createPage, deletePage } = actions
