@@ -4,7 +4,7 @@
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/
  */
 
-// const path = require(`path`)
+const path = require(`path`)
 // const { createFilePath } = require(`gatsby-source-filesystem`)
 
 // Define the template for blog post
@@ -13,7 +13,7 @@
 /**
  * @type {import('gatsby').GatsbyNode['createPages']}
  */
-exports.createPages = async ({ graphql, actions, reporter }) => {
+exports.createPages = async ({ graphql, actions }) => {
   const { createRedirect } = actions
   // createRedirect({
   //   fromPath: `/temp/`,
@@ -32,9 +32,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   })
 }
 
-const handleRedirect = page => {
-  console.log("page", page)
-}
 module.exports.onCreatePage = async ({ page, actions }) => {
   const { createPage, deletePage } = actions
   // Check if the page is a localized 404
@@ -47,14 +44,17 @@ module.exports.onCreatePage = async ({ page, actions }) => {
     // Recreate the modified page
     deletePage(oldPage)
     createPage(page)
-    // createRedirect({
-    //   fromPath: `/fr/404`,
-  
-    //   toPath: `/fr/404/`,
-    //   statusCode: 404,
-    //   force: true,
-    // })
   }
+}
+
+module.exports.onCreatePage = async ({ graphql, actions }) => {
+  const template = path.resolve(`./src/templates/template404.js`)
+  const { createPage } = actions
+
+  createPage({
+    component: template,
+    path:'/en/template404'
+  })
 }
 
 /**
