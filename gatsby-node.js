@@ -48,12 +48,12 @@ module.exports.onCreatePage = async ({ page, actions }) => {
 }
 
 module.exports.onCreatePage = async ({ graphql, actions }) => {
-  const template = path.resolve(`./src/templates/template404.js`)
+  const template = path.resolve(`./src/templates/404.js`)
   const { createPage } = actions
 
   createPage({
     component: template,
-    path:'/en/template404'
+    path:'/en/404'
   })
 }
 
