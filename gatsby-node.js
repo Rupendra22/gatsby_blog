@@ -47,15 +47,15 @@ module.exports.onCreatePage = async ({ page, actions }) => {
   }
 }
 
-module.exports.onCreatePage = async ({ graphql, actions }) => {
-  const template = path.resolve(`./src/templates/404.js`)
-  const { createPage } = actions
+// module.exports.onCreatePage = async ({ graphql, actions }) => {
+//   const template = path.resolve(`./src/templates/404.js`)
+//   const { createPage } = actions
 
-  createPage({
-    component: template,
-    path:'/en/404'
-  })
-}
+//   createPage({
+//     component: template,
+//     path:'/en/404'
+//   })
+// }
 
 /**
  * @type {import('gatsby').GatsbyNode['onCreateNode']}
