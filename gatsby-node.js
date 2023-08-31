@@ -24,10 +24,10 @@ exports.createPages = async ({ graphql, actions }) => {
   // })
 
   createRedirect({
-    fromPath: `https://gatsbyblogmain24036.gatsbyjs.io/`,
+    fromPath: `/`,
 
-    toPath: `https://gatsbyblogmain24036.gatsbyjs.io/about`,
-    statusCode: 200,
+    toPath: `/about`,
+    statusCode: 301,
     force: true
   })
 }
